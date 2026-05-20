@@ -86,7 +86,7 @@ pip install streamlit opencv-python matplotlib pillow numpy
 
 ### Download the Model
 
-Download the pre-trained Xception model from [Google Drive](https://drive.google.com/file/d/1vPS_j2AW3M1W8GydREEDw6CDENSgVwCy/view?usp=share_link) and place it at:
+Download the pre-trained Xception model from [Google Drive](https://drive.google.com/file/d/1HnM0EU6zPtJyV8sVtCflVo-qssLPbusm/view?usp=sharing) and place it at:
 
 ```
 src/models/model_Xception_ft.hdf5
