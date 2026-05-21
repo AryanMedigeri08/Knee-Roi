@@ -4,7 +4,9 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue.svg)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.12-orange.svg)](https://www.tensorflow.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-red.svg)](https://streamlit.io/)
+[![React](https://img.shields.io/badge/React-19-61DAFB.svg)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-8-646CFF.svg)](https://vitejs.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688.svg)](https://fastapi.tiangolo.com/)
 [![Institution](https://img.shields.io/badge/MIT--AOE-Pune-green.svg)](https://www.mitaoe.ac.in/)
 
 ---
@@ -18,6 +20,8 @@
 ## 📄 About
 
 This is the project implementation accompanying our research paper on deterministic ROI extraction for knee X-ray analysis. The system combines a classical image processing pipeline for Region of Interest (ROI) extraction with a deep learning model for osteoarthritis severity classification.
+
+The application uses a modern **React + Vite** frontend with a **FastAPI** backend, providing a polished dashboard experience for uploading X-rays, viewing analysis results, and downloading reports.
 
 The framework is designed to be:
 - **Lightweight** — runs on standard CPU hardware, no GPU required
@@ -68,6 +72,7 @@ Gradient-weighted Class Activation Mapping highlights the anatomical regions tha
 
 ### Prerequisites
 - Python 3.10
+- Node.js 18+ and npm
 - pip
 
 ### Installation
@@ -76,10 +81,29 @@ Gradient-weighted Class Activation Mapping highlights the anatomical regions tha
 # Clone the repository
 git clone https://github.com/Arnav-Shende007/Knee-Roi.git
 cd Knee-Roi
+```
 
-# Install dependencies
+#### Backend Setup
+
+```bash
+# Create and activate a virtual environment (recommended)
+python -m venv tfenv
+# Windows
+tfenv\Scripts\activate
+# macOS/Linux
+source tfenv/bin/activate
+
+# Install Python dependencies
 pip install tensorflow==2.12.0
-pip install streamlit opencv-python matplotlib pillow numpy
+pip install fastapi uvicorn python-multipart
+pip install opencv-python matplotlib pillow numpy fpdf2
+```
+
+#### Frontend Setup
+
+```bash
+cd frontend
+npm install
 ```
 
 ### Download the Model
@@ -92,11 +116,27 @@ src/models/model_Xception_ft.hdf5
 
 ### Run the App
 
+You need to start **both** the backend and frontend:
+
+#### 1. Start the Backend (FastAPI)
+
 ```bash
-streamlit run app/app.py
+# From the project root, with your virtual environment activated
+cd backend
+uvicorn main:app --reload --port 8000
 ```
 
-Navigate to `http://localhost:8501` in your browser.
+The API will be available at `http://localhost:8000`.
+
+#### 2. Start the Frontend (Vite + React)
+
+```bash
+# In a separate terminal
+cd frontend
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`.
 
 ---
 
@@ -104,16 +144,41 @@ Navigate to `http://localhost:8501` in your browser.
 
 ```
 .
+├── backend/
+│   └── main.py              # FastAPI server (analysis endpoints, PDF generation)
+├── frontend/
+│   ├── index.html            # Entry point
+│   ├── public/
+│   │   └── img/              # Static assets (icons, hero image, sample X-rays)
+│   ├── src/
+│   │   ├── App.jsx           # Main React application component
+│   │   ├── index.css         # Global styles and design system
+│   │   ├── App.css           # Component-level styles
+│   │   └── main.jsx          # React entry point
+│   ├── package.json          # Frontend dependencies
+│   └── vite.config.js        # Vite configuration
 ├── app/
-│   ├── app.py              # Main Streamlit application
-│   └── img/                # App assets
+│   └── app.py                # Legacy Streamlit application
 ├── src/
-│   ├── models/             # Pre-trained model (download separately)
-│   └── *.ipynb             # Training notebooks
-├── assets/                 # Documentation assets
-├── environment.yml         # Conda environment
+│   ├── models/               # Pre-trained model (download separately)
+│   └── *.ipynb               # Training notebooks
+├── assets/                   # Documentation assets
+├── environment.yml           # Conda environment (legacy)
 └── README.md
 ```
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 19, Vite 8, Vanilla CSS |
+| Backend | FastAPI, Uvicorn |
+| ML Framework | TensorFlow 2.12, Xception CNN |
+| Image Processing | OpenCV, NumPy, Pillow |
+| Explainability | Grad-CAM |
+| Report Generation | FPDF2 |
 
 ---
 
