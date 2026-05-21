@@ -7,7 +7,6 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB.svg)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF.svg)](https://vitejs.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688.svg)](https://fastapi.tiangolo.com/)
-[![Institution](https://img.shields.io/badge/MIT--AOE-Pune-green.svg)](https://www.mitaoe.ac.in/)
 
 ---
 
@@ -196,7 +195,7 @@ If you use this work, please cite our paper:
 Shende, A., Medigeri, A., Sharan, S., Kale, L., & Bansode, S.
 A Lightweight, Transparent and Risk-Aware ROI Extraction Framework 
 for Responsible Knee X-Ray Analysis.
-MIT Academy of Engineering, Pune, 2025.
+MIT Academy of Engineering, Pune, 2026.
 ```
 
 ---
