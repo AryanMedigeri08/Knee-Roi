@@ -1650,37 +1650,67 @@ input:checked+.slider:before {
 
 .patients-search-input {
     width: 100%;
-    padding: 0.75rem 1rem 0.75rem 2.6rem;
+    padding: 0.85rem 1rem 0.85rem 2.8rem;
     border: 1px solid var(--border);
-    background: var(--bg-light);
+    background: var(--bg-page);
     color: var(--text-dark);
-    border-radius: 10px;
-    font-size: 0.9rem;
+    border-radius: 12px;
+    font-size: 0.92rem;
     font-family: inherit;
-    transition: border-color 0.2s;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01);
 }
 
 .patients-search-input:focus {
     outline: none;
+    background: var(--bg-white);
     border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(11, 77, 255, 0.1);
 }
 
 .patients-search-icon {
     position: absolute;
-    left: 0.9rem;
+    left: 1.1rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
-    width: 16px;
-    height: 16px;
+    transition: color 0.2s ease;
+    pointer-events: none;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+.patients-search-input:focus ~ .patients-search-icon {
+    color: var(--blue);
+}
+
 .patients-table-container {
     overflow-x: auto;
     width: 100%;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg-white);
+    box-shadow: 0 2px 12px rgba(30, 61, 117, 0.02);
+}
+
+/* Custom Scrollbar for Directory Table */
+.patients-table-container::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+.patients-table-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.patients-table-container::-webkit-scrollbar-thumb {
+    background: var(--border-blue);
+    border-radius: 4px;
+}
+
+.patients-table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--blue);
 }
 
 .patients-table {
@@ -1690,21 +1720,34 @@ input:checked+.slider:before {
 }
 
 .patients-table th {
-    padding: 0.85rem 1rem;
-    border-bottom: 2px solid var(--border);
+    padding: 1rem 1.2rem;
+    background-color: var(--bg-page);
     color: var(--text-muted);
-    font-size: 0.76rem;
+    font-size: 0.74rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
+    border-bottom: 1.5px solid var(--border);
+}
+
+.patients-table th:first-child {
+    border-top-left-radius: 14px;
+}
+
+.patients-table th:last-child {
+    border-top-right-radius: 14px;
 }
 
 .patients-table td {
-    padding: 0.95rem 1rem;
+    padding: 1.1rem 1.2rem;
     border-bottom: 1px solid var(--border);
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     color: var(--text-body);
     vertical-align: middle;
+}
+
+.patients-table tr {
+    transition: background-color 0.2s ease;
 }
 
 .patients-table tr:last-child td {
@@ -1712,40 +1755,84 @@ input:checked+.slider:before {
 }
 
 .patients-table tr:hover td {
-    background: var(--bg-light);
+    background-color: var(--blue-light);
 }
 
 .patient-action-btn {
-    background: transparent;
-    border: none;
-    color: var(--blue);
+    background: var(--bg-white);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
     cursor: pointer;
     font-weight: 700;
-    font-size: 0.8rem;
-    padding: 0.3rem 0.6rem;
-    border-radius: 6px;
-    transition: background 0.2s, color 0.2s;
+    font-size: 0.76rem;
+    padding: 0.45rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    justify-content: center;
+    gap: 0.35rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .patient-action-btn:hover {
     background: var(--blue-light);
-    color: var(--blue-hover);
+    color: var(--blue);
+    border-color: var(--border-blue);
+    box-shadow: 0 4px 10px rgba(11, 77, 255, 0.08);
+}
+
+.patient-action-btn.delete {
+    color: var(--red);
+}
+
+.patient-action-btn.delete:hover {
+    background: #fee2e2;
+    color: var(--red);
+    border-color: #fecaca;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.08);
 }
 
 .patient-avatar-placeholder {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
-    background: var(--blue-light);
+    background: linear-gradient(135deg, var(--blue-light) 0%, #dbeafe 100%);
     color: var(--blue);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 800;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+    box-shadow: 0 2px 6px rgba(11, 77, 255, 0.06);
+    border: 2.5px solid #ffffff;
+    flex-shrink: 0;
+}
+
+/* Severity badge colors throughout app */
+.recent-badge.healthy {
+    background: var(--green-light) !important;
+    color: var(--green-dark) !important;
+}
+
+.recent-badge.doubtful {
+    background: var(--amber-light) !important;
+    color: var(--orange) !important;
+}
+
+.recent-badge.minimal {
+    background: #fff4e4 !important;
+    color: var(--orange) !important;
+}
+
+.recent-badge.moderate {
+    background: var(--amber-light) !important;
+    color: var(--orange) !important;
+}
+
+.recent-badge.severe {
+    background: #fee2e2 !important;
+    color: var(--red) !important;
 }
 
 /* ── REPORTS TAB STYLES ── */

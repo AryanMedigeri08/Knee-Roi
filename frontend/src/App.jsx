@@ -866,9 +866,6 @@ function App() {
 
                   {/* Search bar */}
                   <div className="patients-search">
-                    <span className="patients-search-icon">
-                      <Icons.Search style={{ width: 16, height: 16 }} />
-                    </span>
                     <input
                       type="text"
                       className="patients-search-input"
@@ -876,6 +873,9 @@ function App() {
                       value={patientSearchQuery}
                       onChange={(e) => setPatientSearchQuery(e.target.value)}
                     />
+                    <span className="patients-search-icon">
+                      <Icons.Search style={{ width: 16, height: 16 }} />
+                    </span>
                   </div>
 
                   {/* Patients Table */}
@@ -900,11 +900,13 @@ function App() {
                         ) : (
                           filteredPatients.map(patient => (
                             <tr key={patient.id}>
-                              <td style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                                <div className="patient-avatar-placeholder">
-                                  {patient.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                              <td>
+                                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+                                  <div className="patient-avatar-placeholder">
+                                    {patient.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase()}
+                                  </div>
+                                  <span style={{ fontWeight: '700', color: 'var(--text-dark)' }}>{patient.name}</span>
                                 </div>
-                                <span style={{ fontWeight: '700' }}>{patient.name}</span>
                               </td>
                               <td>{patient.date}</td>
                               <td>
@@ -917,17 +919,17 @@ function App() {
                               </td>
                               <td>{patient.knee}</td>
                               <td>
-                                <div style={{ display: 'flex', gap: '0.3rem' }}>
+                                <div style={{ display: 'flex', gap: '0.4rem' }}>
                                   <button className="patient-action-btn" onClick={() => viewPatientInsights(patient)} title="View in Insights">
-                                    <Icons.Eye style={{ width: 14, height: 14 }} />
+                                    <Icons.Eye style={{ width: 13, height: 13 }} />
                                     View
                                   </button>
                                   <button className="patient-action-btn" onClick={() => downloadPatientReport(patient)} title="Download PDF Report">
-                                    <Icons.Download style={{ width: 14, height: 14 }} />
+                                    <Icons.Download style={{ width: 13, height: 13 }} />
                                     PDF
                                   </button>
-                                  <button className="patient-action-btn" style={{ color: 'var(--red)' }} onClick={() => handleDeletePatient(patient.id)} title="Delete Record">
-                                    <Icons.Trash style={{ width: 14, height: 14 }} />
+                                  <button className="patient-action-btn delete" onClick={() => handleDeletePatient(patient.id)} title="Delete Record">
+                                    <Icons.Trash style={{ width: 13, height: 13 }} />
                                   </button>
                                 </div>
                               </td>
